@@ -15490,8 +15490,8 @@ dd {
 }
 
 @font-face {
-    font-family: "Homel-icons";
-    src: url("../fonts/Homel-icons435b.ttf?ufvuz0") format("truetype"), url("../fonts/Homel-icons435b.woff?ufvuz0") format("woff"), url("../fonts/Homel-icons435b.svg?ufvuz0#Homel-icons") format("svg");
+    font-family: "cartzilla-icons";
+    src: url("../fonts/cartzilla-icons435b.ttf?ufvuz0") format("truetype"), url("../fonts/cartzilla-icons435b.woff?ufvuz0") format("woff"), url("../fonts/cartzilla-icons435b.svg?ufvuz0#cartzilla-icons") format("svg");
     font-weight: normal;
     font-style: normal;
     font-display: block
@@ -15500,7 +15500,7 @@ dd {
 [class^=ci-],
 [class*=" ci-"] {
     display: inline-block;
-    font-family: "Homel-icons" !important;
+    font-family: "cartzilla-icons" !important;
     speak: never;
     font-style: normal;
     font-weight: normal;
@@ -16588,7 +16588,7 @@ input[type=search]::-webkit-search-results-decoration {
 .password-toggle-btn .password-toggle-indicator {
     transition: color .2s ease-in-out;
     color: #7d879c;
-    font-family: "Homel-icons";
+    font-family: "cartzilla-icons";
     font-style: normal
 }
 
@@ -17220,7 +17220,7 @@ input[type=search]::-webkit-search-results-decoration {
 .btn-dislike::before {
     display: inline-block;
     margin-right: .375rem;
-    font-family: "Homel-icons";
+    font-family: "cartzilla-icons";
     font-size: 1.25em;
     vertical-align: middle;
     content: ""
@@ -17316,7 +17316,7 @@ input[type=search]::-webkit-search-results-decoration {
 }
 
 .btn-video::before {
-    font-family: "Homel-icons";
+    font-family: "cartzilla-icons";
     font-size: .75rem;
     font-weight: 700;
     content: ""
@@ -17942,7 +17942,7 @@ a.nav-link:hover .media-tab-media {
     background: #eafaf3;
     border: 1px solid #42d697;
     color: #42d697;
-    font-family: "Homel-icons";
+    font-family: "cartzilla-icons";
     font-size: .625rem;
     font-weight: 500;
     line-height: 1.25rem;
@@ -19472,7 +19472,7 @@ a.nav-link:hover .media-tab-media {
 
 .breadcrumb-item::before {
     margin-top: .0625rem;
-    font-family: "Homel-icons";
+    font-family: "cartzilla-icons";
     font-size: .9em;
     vertical-align: middle
 }
@@ -20231,7 +20231,7 @@ a.nav-link:hover .media-tab-media {
     margin-left: -1.4375rem;
     transform: scale(0.3);
     color: #fff;
-    font-family: "Homel-icons";
+    font-family: "cartzilla-icons";
     font-size: 1.75rem;
     text-align: center;
     line-height: 2.875rem;
@@ -20530,7 +20530,7 @@ a.nav-link:hover .media-tab-media {
     padding-top: .0625rem;
     background-image: none;
     background-color: rgba(var(--cz-primary-rgb), 0.1);
-    font-family: "Homel-icons";
+    font-family: "cartzilla-icons";
     font-size: .5rem;
     font-weight: bold;
     content: "";
