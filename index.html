@@ -28,10 +28,9 @@
   <link rel="stylesheet" media="screen" href="vendor/lightgallery/css/lightgallery-bundle.min.css" />
   <!-- Main Theme Styles + Bootstrap-->
   <link rel="stylesheet" media="screen" href="css/theme.min.css">
-  <script async src="loja.js"></script>
-  
-
-  
+  <link rel="stylesheet" href="js/index.js">
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js" ;></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js" ;></script>
 
 </head>
 <!-- Body-->
@@ -54,13 +53,14 @@
           <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin-tab">
             <div class="mb-3">
               <label class="form-label" for="si-email">Email address</label>
-              <input class="form-control" type="email" id="si-email" placeholder="johndoe@example.com" required>
+              <input class="form-control" type="email" id="si-email" onchange="validateFields()"
+                placeholder="johndoe@example.com" required>
               <div class="invalid-feedback">Please provide a valid email address.</div>
             </div>
             <div class="mb-3">
               <label class="form-label" for="si-password">Password</label>
               <div class="password-toggle">
-                <input class="form-control" type="password" id="si-password" required>
+                <input class="form-control" type="password" id="si-password" onchange="validateFields()" required>
                 <label class="password-toggle-btn" aria-label="Show/hide password">
                   <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                 </label>
@@ -72,7 +72,7 @@
                 <label class="form-check-label" for="si-remember">Remember me</label>
               </div><a class="fs-sm" href="#">Forgot password?</a>
             </div>
-            <button class="btn btn-primary btn-shadow d-block w-100" type="submit">Sign in</button>
+            <button class="btn btn-primary btn-shadow d-block w-100" type="submit" id="si-button">Sign in</button>
           </form>
           <form class="needs-validation tab-pane fade" autocomplete="off" novalidate id="signup-tab">
             <div class="mb-3">
@@ -111,7 +111,6 @@
   </div>
   <main class="page-wrapper">
     <!-- Navbar -->
-
     <header class="navbar navbar-sticky navbar-expand-lg navbar-light bg-light">
       <div class="container">
         <a class="navbar-brand d-none d-sm-block me-4 order-lg-1" href="index.html">
@@ -150,13 +149,15 @@
                     <div class="widget widget-links mb-4">
                       <h6 class="fs-base mb-3">Honemel</h6>
                       <ul class="widget-list">
-                        <li class="widget-list-item"><a class="widget-list-link" href="shop-grid-ft.html">Honemel Sabores</a></li>
+                        <li class="widget-list-item"><a class="widget-list-link" href="shop-grid-ft.html">Honemel
+                            Sabores</a></li>
                       </ul>
                     </div>
                     <div class="widget widget-links mb-4">
                       <h6 class="fs-base mb-3">Premium</h6>
                       <ul class="widget-list">
-                        <li class="widget-list-item"><a class="widget-list-link" href="shop-grid-ft.html">Honmel Premium</a></li>
+                        <li class="widget-list-item"><a class="widget-list-link" href="shop-grid-ft.html">Honmel
+                            Premium</a></li>
                       </ul>
                     </div>
                   </div>
@@ -205,18 +206,18 @@
             <h1 class="text-light mb-5">Aprecie a doçura que a natureza nos dá</h1>
             <div class="d-flex align-items-center mb-5">
               <a class="btn btn-primary me-grid-gutter" href="">
-              <i class="ci-cart fs-lg me-2"></i>Adicione ao Carrinho</a>
+                <i class="ci-cart fs-lg me-2"></i>Adicione ao Carrinho</a>
               <span class="h4 mb-0 text-light fw-normal">R$19.<small>99</small></span>
             </div>
             <ul class="list-unstyled text-light mb-0">
-              <li class="d-flex"><i class="ci-bluetooth-circle h5 fw-normal text-light me-2"></i>
-                <div class="ps-1">Wireless connection</div>
+              <li class="d-flex"><i class="ci-jam h5 fw-normal text-light me-2"></i>
+                <div class="ps-1">Frascos selados a vacuo</div>
               </li>
-              <li class="d-flex"><i class="ci-sound-waves h5 fw-normal text-light me-2"></i>
-                <div class="ps-1">Best in class sound</div>
+              <li class="d-flex"><i class="ci-heart h5 fw-normal text-light me-2"></i>
+                <div class="ps-1">Super saudavel</div>
               </li>
-              <li class="d-flex"><i class="ci-battery h5 fw-normal text-light me-2"></i>
-                <div class="ps-1">Up to 40 hours battery life</div>
+              <li class="d-flex"><i class="ci-basket h5 fw-normal text-light me-2"></i>
+                <div class="ps-1">otimo para picnic</div>
               </li>
             </ul>
           </div>
@@ -534,7 +535,7 @@
               <li class="widget-list-item"><a class="widget-list-link" href="#">Geleia Real Honmel</a></li>
               <li class="widget-list-item"><a class="widget-list-link" href="#">Honmel Delux Premium</a></li>
               <li class="widget-list-item"><a class="widget-list-link" href="#">Homel Sabores</a></li>
-              
+
             </ul>
           </div>
         </div>
@@ -566,7 +567,7 @@
           <div class="widget pb-2 mb-4">
             <h3 class="widget-title text-light pb-1">Mantenha-se Informado</h3>
             <form class="subscription-form validate"
-              action="https://studio.us12.list-manage.com/subscribe/post?u=c7103e2c981361a6639545bd5&amp;amp;id=29ca296126"
+              action=""
               method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
               <div class="input-group flex-nowrap"><i
                   class="ci-mail position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
@@ -615,6 +616,31 @@
 
   <!-- Main theme script-->
   <script src="js/theme.min.js"></script>
+
 </body>
+
+<!-- Firebase conction-->
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyA3Xdxmqz27VaJa8XHQ7lKrf5qjF1ficsA",
+    authDomain: "projetohonmel.firebaseapp.com",
+    projectId: "projetohonmel",
+    storageBucket: "projetohonmel.appspot.com",
+    messagingSenderId: "258344388224",
+    appId: "1:258344388224:web:a3ed6977deb4a454110865"
+  };
+    firebase.initializeApp(firebaseConfig)
+ 
+  /*console.log('antes');
+  firebase.auth().signInWithEmailAndPassword("escanor.pec.leao@gmail.com", "live2011").then(response =>{
+    console.log('success', response)
+  }).catch(error=>{
+    console.log('error', error)
+  });
+  console.log('depois')
+  */
+  
+</script>
 
 </html>
