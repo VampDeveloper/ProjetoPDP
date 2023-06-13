@@ -28,7 +28,7 @@
   <link rel="stylesheet" media="screen" href="vendor/lightgallery/css/lightgallery-bundle.min.css" />
   <!-- Main Theme Styles + Bootstrap-->
   <link rel="stylesheet" media="screen" href="css/theme.min.css">
-  <link rel="stylesheet" href="js/index.js">
+  
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js" ;></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js" ;></script>
 
@@ -53,14 +53,15 @@
           <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin-tab">
             <div class="mb-3">
               <label class="form-label" for="si-email">Email address</label>
-              <input class="form-control" type="email" id="si-email" onchange="validateFields()"
-                placeholder="johndoe@example.com" required>
+              <input class="form-control" type="email" name="email" id="email"
+                placeholder="johndoe@example.com" />
               <div class="invalid-feedback">Please provide a valid email address.</div>
             </div>
             <div class="mb-3">
               <label class="form-label" for="si-password">Password</label>
               <div class="password-toggle">
-                <input class="form-control" type="password" id="si-password" onchange="validateFields()" required>
+                <input class="form-control" type="password" name="password" id="password"  required>
+                
                 <label class="password-toggle-btn" aria-label="Show/hide password">
                   <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                 </label>
@@ -72,7 +73,8 @@
                 <label class="form-check-label" for="si-remember">Remember me</label>
               </div><a class="fs-sm" href="#">Forgot password?</a>
             </div>
-            <button class="btn btn-primary btn-shadow d-block w-100" type="submit" id="si-button">Sign in</button>
+            <button class="btn btn-primary btn-shadow d-block w-100" type="button" id="login-button" onclick="login()">Sign in</button>
+            
           </form>
           <form class="needs-validation tab-pane fade" autocomplete="off" novalidate id="signup-tab">
             <div class="mb-3">
@@ -613,6 +615,7 @@
   <script src="vendor/lightgallery/lightgallery.min.js"></script>
   <script src="vendor/lightgallery/plugins/fullscreen/lg-fullscreen.min.js"></script>
   <script src="vendor/lightgallery/plugins/zoom/lg-zoom.min.js"></script>
+  <script src="js/index.js"></script>
 
   <!-- Main theme script-->
   <script src="js/theme.min.js"></script>
@@ -632,13 +635,13 @@
   };
     firebase.initializeApp(firebaseConfig)
  
-  console.log('antes');
+  /*console.log('antes');
   firebase.auth().signInWithEmailAndPassword("escanor.pec.leao@gmail.com", "live2011").then(response =>{
     console.log('success', response)
   }).catch(error=>{
     console.log('error', error)
   });
-  console.log('depois')
+  console.log('depois')*/
   
 </script>
 
