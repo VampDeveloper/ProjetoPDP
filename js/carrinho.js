@@ -2,6 +2,7 @@ function removerItem(event) {
     var botao = event.target;
     var item = botao.closest('.widget-cart-item');
     item.remove();
+    atualizarQuantidadeItensCarrinho();
     atualizarDropdownCarrinho();
   }
   
@@ -57,7 +58,7 @@ function removerItem(event) {
   
     var productPrice = document.createElement("span");
     productPrice.classList.add("text-accent", "me-2");
-    productPrice.textContent = "$10.00";
+    productPrice.textContent = "$10.<small>00</small>";
   
     var productQuantity = document.createElement("span");
     productQuantity.classList.add("text-muted");
@@ -73,12 +74,11 @@ function removerItem(event) {
     var itensCarrinho = document.getElementById("itens-carrinho");
     itensCarrinho.appendChild(item);
   
+    atualizarQuantidadeItensCarrinho();
     atualizarDropdownCarrinho();
-    atualizarNumeroItensCarrinho();
   }
   
-  
-  function atualizarNumeroItensCarrinho() {
+  function atualizarQuantidadeItensCarrinho() {
     var numeroItens = document.querySelectorAll('.widget-cart-item').length;
     var numeroItensElement = document.querySelector('.navbar-tool-label');
     numeroItensElement.textContent = numeroItens.toString();
@@ -90,23 +90,24 @@ function removerItem(event) {
     var subtotalFormatted = '$' + subtotal.toFixed(2);
   
     // Atualizar o valor do subtotal na parte visual do carrinho
-    var subtotalVisualElement = document.querySelector('#parte-visual-carrinho .text-accent');
+    var subtotalVisualElement = document.querySelector('#parte-visual-carrinho .fs-base');
     if (subtotalVisualElement) {
-      subtotalVisualElement.textContent = subtotalFormatted;
+      subtotalVisualElement.innerHTML = subtotalFormatted + '<small>.00</small>';
     }
   
     // Atualizar o valor do subtotal no cabeçalho da dropdown
     var subtotalDropdownElement = document.querySelector('.navbar-tool-text #subtotalValue');
     if (subtotalDropdownElement) {
-      subtotalDropdownElement.textContent = subtotalFormatted;
+      subtotalDropdownElement.innerHTML = subtotalFormatted;
+    }
+  
+    // Atualizar o valor de x1 na parte visual do carrinho
+    var x1VisualElement = document.querySelector('#parte-visual-carrinho .widget-product-meta .text-muted');
+    if (x1VisualElement) {
+      var quantidadeItens = itensCarrinho.getElementsByClassName('widget-cart-item').length;
+      x1VisualElement.textContent = 'x ' + quantidadeItens;
     }
   }
-  
-  
-  // Chamar a função para atualizar o valor inicial do subtotal
-  atualizarDropdownCarrinho();
-  
-  
   
   function calcularSubtotal(itensCarrinho) {
     var subtotal = 0;
@@ -118,7 +119,7 @@ function removerItem(event) {
       var quantidadeElement = item.querySelector('.widget-product-meta .text-muted');
   
       if (precoElement && quantidadeElement) {
-        var preco = parseFloat(precoElement.textContent.replace('$', ''));
+        var preco = parseFloat(precoElement.textContent.replace('$', '').replace('<small>00</small>', ''));
         var quantidade = parseInt(quantidadeElement.textContent.replace('x', '').trim());
         subtotal += preco * quantidade;
       }
@@ -127,12 +128,6 @@ function removerItem(event) {
     return subtotal;
   }
   
-  function atualizarSubtotal() {
-    var subtotalValueElement = document.getElementById('subtotalValue');
-    var subtotalElement = document.querySelector('.fs-sm .text-accent');
-    var subtotal = subtotalElement.textContent;
-    subtotalValueElement.textContent = subtotal;
-  }
-  
-  atualizarSubtotal();
+  atualizarQuantidadeItensCarrinho();
+  atualizarDropdownCarrinho();
   
