@@ -13,7 +13,7 @@ function login() {
     firebase.auth().signInWithEmailAndPassword(
         form.email().value, form.password().value
     ).then(response => {
-        window.location.href = "Home.html";
+        window.location.href = "../Home.html";
     }).catch(error => {
         alert(getErrorMessage(error));
     });
