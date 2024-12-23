@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from Homel.createx.studio/home-single-store.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 29 May 2023 12:01:48 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
+<head>
+  <meta charset="utf-8">
+  <title>Honemel Store</title>
+  <meta name="description" content="Cartzilla - Bootstrap E-commerce Template">
+  <meta name="keywords"
+    content="bootstrap, shop, e-commerce, market, modern, responsive,  business, mobile, bootstrap, html5, css3, js, gallery, slider, touch, creative, clean">
+  <meta name="author" content="Createx Studio">
+  <!-- Viewport-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Favicon and Touch Icons-->
+  <link rel="icon 128" sizes="180x180" href="Icon 128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icon16.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="mask-icon" color="#fe6a6a" href="safari-pinned-tab.svg">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Vendor Styles including: Font Icons, Plugins, etc.-->
+  <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css" />
+  <link rel="stylesheet" media="screen" href="vendor/tiny-slider/dist/tiny-slider.css" />
+  <link rel="stylesheet" media="screen" href="vendor/lightgallery/css/lightgallery-bundle.min.css" />
+  <!-- Main Theme Styles + Bootstrap-->
+  <link rel="stylesheet" media="screen" href="css/theme.min.css">
+  <link rel="stylesheet" href="js/index.js">
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js" ;></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js" ;></script>
+
+</head>
+<!-- Body-->
+
+<body class="handheld-toolbar-enabled">
+  <!-- Sign in / sign up modal-->
+  <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-secondary">
+          <ul class="nav nav-tabs card-header-tabs" role="tablist">
+            <li class="nav-item"><a class="nav-link fw-medium active" href="#signin-tab" data-bs-toggle="tab" role="tab"
+                aria-selected="true"><i class="ci-unlocked me-2 mt-n1"></i>Sign in</a></li>
+            <li class="nav-item"><a class="nav-link fw-medium" href="#signup-tab" data-bs-toggle="tab" role="tab"
+                aria-selected="false"><i class="ci-user me-2 mt-n1"></i>Sign up</a></li>
+          </ul>
+          <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body tab-content py-4">
+          <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin-tab">
+            <div class="mb-3">
+              <label class="form-label" for="si-email">Email address</label>
+              <input class="form-control" type="email" id="si-email" onchange="validateFields()"
+                placeholder="johndoe@example.com" required>
+              <div class="invalid-feedback">Please provide a valid email address.</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="si-password">Password</label>
+              <div class="password-toggle">
+                <input class="form-control" type="password" id="si-password" onchange="validateFields()" required>
+                <label class="password-toggle-btn" aria-label="Show/hide password">
+                  <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                </label>
+              </div>
+            </div>
+            <div class="mb-3 d-flex flex-wrap justify-content-between">
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="si-remember">
+                <label class="form-check-label" for="si-remember">Remember me</label>
+              </div><a class="fs-sm" href="#">Forgot password?</a>
+            </div>
+            <button class="btn btn-primary btn-shadow d-block w-100" type="submit" id="si-button">Sign in</button>
+          </form>
+          <form class="needs-validation tab-pane fade" autocomplete="off" novalidate id="signup-tab">
+            <div class="mb-3">
+              <label class="form-label" for="su-name">Full name</label>
+              <input class="form-control" type="text" id="su-name" placeholder="John Doe" required>
+              <div class="invalid-feedback">Please fill in your name.</div>
+            </div>
+            <div class="mb-3">
+              <label for="su-email">Email address</label>
+              <input class="form-control" type="email" id="su-email" placeholder="johndoe@example.com" required>
+              <div class="invalid-feedback">Please provide a valid email address.</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="su-password">Password</label>
+              <div class="password-toggle">
+                <input class="form-control" type="password" id="su-password" required>
+                <label class="password-toggle-btn" aria-label="Show/hide password">
+                  <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                </label>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="su-password-confirm">Confirm password</label>
+              <div class="password-toggle">
+                <input class="form-control" type="password" id="su-password-confirm" required>
+                <label class="password-toggle-btn" aria-label="Show/hide password">
+                  <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                </label>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-shadow d-block w-100" type="submit">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <main class="page-wrapper">
+    <!-- Navbar -->
+    <header class="shadow-sm">
+      <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
+      <div class="navbar-sticky bg-light">
+        <div class="navbar navbar-expand-lg navbar-light">
+          <div class="container">
+            <a class="navbar-brand d-none d-sm-block flex-shrink-0" href="index.html"><img src="img/logo_dark.png"
+                width="142" alt="#"></a>
+            <a class="navbar-brand d-sm-none flex-shrink-0 me-2" href="index.html"><img src="img/logo_dark.png"
+                width="74" alt="#"></a>
+
+            <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button><a
+                class="navbar-tool navbar-stuck-toggler" href="#"><span class="navbar-tool-tooltip">Expand menu</span>
+                <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-menu"></i></div>
+              </a><a class="navbar-tool d-none d-lg-flex" href="account-wishlist.html"><span
+                  class="navbar-tool-tooltip">Wishlist</span>
+                <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-heart"></i></div>
+              </a><a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" href="account-profile.html">
+                <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-user"></i></div>
+                <div class="navbar-tool-text ms-n3"><small>Seja Bem-vindo</small>Minha conta</div>
+              </a>
+              <!-- carrinho-->
+              <div class="navbar-tool dropdown ms-3">
+                <a class="navbar-tool-icon-box bg-secondary dropdown-toggle" href="shop-cart.html">
+                  <span class="navbar-tool-label">1</span>
+                  <i class="navbar-tool-icon ci-cart"></i>
+                </a>
+                <a class="navbar-tool-text" href="shop-cart.html">
+                  <small>My Cart</small>
+                  <span id="subtotalValue">$10.00</span>
+                </a>
+                <!-- Carrinho dropdown-->
+                <div class="dropdown-menu dropdown-menu-end">
+                  <div class="widget widget-cart px-3 pt-2 pb-3" style="width: 20rem;">
+                    <!-- itens do carrinho-->
+                    <div style="height: 15rem;" data-simplebar data-simplebar-auto-hide="false" id="itens-carrinho">
+                      <div class="widget-cart-item pb-2 border-bottom" data-id="1">
+                            <button class="btn-close text-danger" type="button" aria-label="Remove">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                        <div class="d-flex align-items-center"><a class="flex-shrink-0" href="shop-single-v2.html"><img
+                              src="img/shop/cart/widget/em breve.png" width="64" alt="Product"></a>
+                          <div class="ps-2">
+                            <h6 class="widget-product-title"><a href="shop-single-v1.html">Em Breve</a>
+                            </h6>
+                            <div class="widget-product-meta"><span
+                                class="text-accent me-2">$10.<small>00</small></span><span class="text-muted">x
+                                1</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="parte-visual-carrinho">
+                      <div class="d-flex flex-wrap justify-content-between align-items-center py-3">
+                        <div class="fs-sm me-2 py-2">
+                          <span class="text-muted">Subtotal:</span>
+                          <span class="text-accent fs-base ms-1" id="subtotalSection">$10.<small>00</small></span>
+                        </div>
+                        <a class="btn btn-outline-secondary btn-sm" href="shop-cart.html">Expand cart<i class="ci-arrow-right ms-1 me-n1"></i></a>
+                      </div>
+                      <a class="btn btn-primary btn-sm d-block w-100" href="404-illustration.html">
+                        <i class="ci-card me-2 fs-base align-middle"></i>Checkout
+                      </a>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="navbar navbar-expand-lg navbar-light navbar-stuck-menu mt-n2 pt-0 pb-2">
+          <div class="container">
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <!-- Primary menu-->
+              <ul class="navbar-nav">
+                <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" href="index.html"
+                    data-bs-toggle="dropdown">Home</a>
+
+                </li>
+                <!-- Alterar grid NavBar-->
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                    data-bs-toggle="dropdown">Shop</a>
+                  <div class="dropdown-menu p-0">
+                    <div class="d-flex flex-wrap flex-sm-nowrap px-2">
+                      <div class="mega-dropdown-column pt-1 pt-lg-4 pb-4 px-2 px-lg-3">
+                        <div class="widget widget-links mb-4">
+                          <h6 class="fs-base mb-3">Honmel</h6>
+                          <ul class="widget-list">
+                            <li class="widget-list-item"><a class="widget-list-link" href="shop-grid-ft.html">Honmel
+                                Sabores</a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="widget widget-links mb-4">
+                          <h6 class="fs-base mb-3">Premium</h6>
+                          <ul class="widget-list">
+                            <li class="widget-list-item"><a class="widget-list-link" href="shop-grid-ft.html"></a>Honmel
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    data-bs-auto-close="outside">Account</a>
+                  <ul class="dropdown-menu">
+                    <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#"
+                        data-bs-toggle="dropdown">Shop
+                        User Account</a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="account-orders.html">Orders History</a></li>
+                        <li><a class="dropdown-item" href="account-profile.html">Profile Settings</a></li>
+                        <li><a class="dropdown-item" href="account-address.html">Account Addresses</a></li>
+                        <li><a class="dropdown-item" href="account-payment.html">Payment Methods</a></li>
+                        <li><a class="dropdown-item" href="account-wishlist.html">Wishlist</a></li>
+                        <li><a class="dropdown-item" href="account-tickets.html">My Tickets</a></li>
+                        <li><a class="dropdown-item" href="account-single-ticket.html">Single Ticket</a></li>
+                      </ul>
+                    </li>
+                    <li><a class="dropdown-item" href="account-signin.html">Sign In / Sign Up</a></li>
+                    <li><a class="dropdown-item" href="account-password-recovery.html">Password Recovery</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                    data-bs-auto-close="outside">Pages</a>
+                  <ul class="dropdown-menu">
+                    <li class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="about.html">About Us</a></li>
+                    <li><a class="dropdown-item" href="contacts.html">Contacts</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="blog-list.html"
+                    data-bs-toggle="#" data-bs-auto-close="outside">Blog</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Section primario-->
+    <section class="bg-position-top-center bg-repeat-0 pt-5 pb-5 py-md-10"
+      style="background-image: url(img/home/mono-product/hero-bg.png);">
+      <div class="container pt-4 mb-3 mb-lg-0">
+        <div class="row">
+          <div class="col-lg-5 col-md-6 col-sm-8 offset-lg-1">
+            <h5 class="text-light fw-normal">Mel Natural Honmel</h5>
+            <h1 class="text-light mb-5">Aprecie a doçura que a natureza nos dá</h1>
+            <div class="d-flex align-items-center mb-5">
+              <a class="btn btn-primary me-grid-gutter" href="#" id="btn-adicionar-item" onclick="adicionarItem()">
+                <i class="ci-cart fs-lg me-2"></i>Adicione ao Carrinho</a>
+              <span class="h4 mb-0 text-light fw-normal">R$10.<small>00</small></span>
+            </div>
+            <ul class="list-unstyled text-light mb-0">
+              <li class="d-flex"><i class="ci-jam h5 fw-normal text-light me-2"></i>
+                <div class="ps-1">Frascos selados a vacuo</div>
+              </li>
+              <li class="d-flex"><i class="ci-heart h5 fw-normal text-light me-2"></i>
+                <div class="ps-1">Super saudavel</div>
+              </li>
+              <li class="d-flex"><i class="ci-basket h5 fw-normal text-light me-2"></i>
+                <div class="ps-1">otimo para picnic</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Divisor-->
+    <hr class="mt-md-2 mb-5">
+    <!-- Sobre o Produto -->
+    <section class="container py-4 py-md-5 my-2">
+      <h2 class="text-center mb-4 mb-md-5 pb-2">Detalhes do Produto</h2>
+      <div class="row text-center text-sm-start">
+        <div class="col-lg-5 col-md-6 col-sm-8 offset-lg-2 offset-md-1">
+          <h5 class="mb-3">Destaque</h5>
+          <p class="fs-sm mb-3 mb-lg-4 pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+            ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit animasurel. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <h5 class="mb-3">Composição</h5>
+          <p class="fs-sm mb-3 mb-lg-4 pb-2"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam delectus,
+            quaerat explicabo illo porro cum quibusdam iste laborum necessitatibus non excepturi accusamus nisi
+            reprehenderit neque, sed id eius ullam sint?</p>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 offset-md-1">
+          <h5 class="mb-3">Conteudo</h5>
+          <ul class="list-unstyled fs-sm mb-3 mb-lg-4 pb-1">
+            <li>lorem lorem lorem</li>
+            <li>lorem lorem lorem</li>
+            <li>lorem lorem lorem</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- Galeria de Produtos-->
+    <section class="container pt-2 pt-md-5">
+      <h2 class="text-center mb-5">Galeria de Produtos</h2>
+      <div class="row gallery">
+        <div class="col-md-4 col-sm-6 mb-grid-gutter"><a class="gallery-item rounded-3"
+            href="img/home/mono-product/gallery/01.png"
+            data-bs-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;Gallery image caption&lt;/h6&gt;"><img
+              src="img/home/mono-product/gallery/th01.png" alt="Honmel Natural"><span
+              class="gallery-item-caption">Honmel Natural</span></a></div>
+        <div class="col-md-4 col-sm-6 mb-grid-gutter"><a class="gallery-item rounded-3"
+            href="img/home/mono-product/gallery/02.png"
+            data-bs-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;Gallery image caption&lt;/h6&gt;"><img
+              src="img/home/mono-product/gallery/th02.png" alt="Honmel Natural com Limão"><span
+              class="gallery-item-caption">Honmel Natural com Limão</span></a></div>
+        <div class="col-md-4 col-sm-6 mb-grid-gutter"><a class="gallery-item rounded-3"
+            href="img/home/mono-product/gallery/03.png"
+            data-bs-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;Gallery image caption&lt;/h6&gt;"><img
+              src="img/home/mono-product/gallery/th03.png" alt="Honmel Natural com Elcalipto"><span
+              class="gallery-item-caption">Honmel Natural com Elcalipto</span></a></div>
+        <div class="col-md-4 col-sm-6 mb-grid-gutter"><a class="gallery-item rounded-3"
+            href="img/home/mono-product/gallery/04.png"
+            data-bs-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;Gallery image caption&lt;/h6&gt;"><img
+              src="img/home/mono-product/gallery/th04.png" alt="Geleia Real Honmel"><span
+              class="gallery-item-caption">Geleia Real Honmel</span></a></div>
+        <div class="col-md-4 col-sm-6 mb-grid-gutter"><a class="gallery-item rounded-3"
+            href="img/home/mono-product/gallery/05.png"
+            data-bs-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;Gallery image caption&lt;/h6&gt;"><img
+              src="img/home/mono-product/gallery/th05.png" alt="Honmel Natural com Romã"><span
+              class="gallery-item-caption">Honmel Natural com Romã</span></a></div>
+        <div class="col-md-4 col-sm-6 mb-grid-gutter"><a class="gallery-item rounded-3"
+            href="img/home/mono-product/gallery/06.png"
+            data-bs-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;Gallery image caption&lt;/h6&gt;"><img
+              src="img/home/mono-product/gallery/th06.png" alt="Honmel Delux Premium"><span
+              class="gallery-item-caption">Honmel Delux Premium</span></a></div>
+      </div>
+    </section>
+    <hr class="mt-md-2 mb-5">
+    <!-- Reviews-->
+    <section class="bg-secondary pt-5" style="padding-bottom: 300px;">
+      <div class="container py-md-5 mb-4 pt-3 pb-4">
+        <h2 class="text-center mb-4 mb-md-5 pb-2">Depoimentos</h2>
+        <div class="tns-carousel mb-3">
+          <div class="tns-carousel-inner"
+            data-carousel-options="{&quot;items&quot;: 2, &quot;controls&quot;: false, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1, &quot;gutter&quot;:20}, &quot;576&quot;:{&quot;items&quot;:2, &quot;gutter&quot;:20},&quot;850&quot;:{&quot;items&quot;:3, &quot;gutter&quot;:20},&quot;1080&quot;:{&quot;items&quot;:4, &quot;gutter&quot;:25}}}">
+            <blockquote class="mb-2">
+              <div class="card border-0 shadow-sm"><span class="testimonial-mark"></span>
+                <div class="card-body fs-md text-muted">
+                  <div class="mb-2">
+                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
+                    </div>
+                  </div>Lorem ipsum dolor sit amet, quia non consectetur adipiscing elit, sed do eiusmod tempor
+                  incididunt ut labore et dolore magna aliqua.
+                </div>
+              </div>
+              <footer class="d-flex justify-content-center pt-4">
+                <div class="d-flex align-items-center"><img class="rounded-circle" src="img/testimonials/03.jpg"
+                    width="50" alt="Richard Davis">
+                  <div class="ps-3">
+                    <h6 class="fs-sm mb-n1">Richard Davis</h6><span class="fs-ms text-muted opacity-75">Feb 14,
+                      2020</span>
+                  </div>
+                </div>
+              </footer>
+            </blockquote>
+            <blockquote class="mb-2">
+              <div class="card border-0 shadow-sm"><span class="testimonial-mark"></span>
+                <div class="card-body fs-md text-muted">
+                  <div class="mb-2">
+                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i>
+                    </div>
+                  </div>Lorem ipsum dolor sit amet, quia non consectetur adipiscing elit, sed do eiusmod tempor
+                  incididunt ut labore et dolore magna aliqua.
+                </div>
+              </div>
+              <footer class="d-flex justify-content-center pt-4">
+                <div class="d-flex align-items-center"><img class="rounded-circle" src="img/testimonials/04.jpg"
+                    width="50" alt="Laura Willson">
+                  <div class="ps-3">
+                    <h6 class="fs-sm mb-n1">Laura Willson</h6><span class="fs-ms text-muted opacity-75">Feb 05,
+                      2020</span>
+                  </div>
+                </div>
+              </footer>
+            </blockquote>
+            <blockquote class="mb-2">
+              <div class="card border-0 shadow-sm"><span class="testimonial-mark"></span>
+                <div class="card-body fs-md text-muted">
+                  <div class="mb-2">
+                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i><i
+                        class="star-rating-icon ci-star"></i>
+                    </div>
+                  </div>Lorem ipsum dolor sit amet, quia non consectetur adipiscing elit, sed do eiusmod tempor
+                  incididunt ut labore et dolore magna aliqua.
+                </div>
+              </div>
+              <footer class="d-flex justify-content-center pt-4">
+                <div class="d-flex align-items-center"><img class="rounded-circle" src="img/testimonials/01.jpg"
+                    width="50" alt="Mary Grant">
+                  <div class="ps-3">
+                    <h6 class="fs-sm mb-n1">Mary Alice Grant</h6><span class="fs-ms text-muted opacity-75">Jan 27,
+                      2020</span>
+                  </div>
+                </div>
+              </footer>
+            </blockquote>
+            <blockquote class="mb-2">
+              <div class="card border-0 shadow-sm"><span class="testimonial-mark"></span>
+                <div class="card-body fs-md text-muted">
+                  <div class="mb-2">
+                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
+                    </div>
+                  </div>Lorem ipsum dolor sit amet, quia non consectetur adipiscing elit, sed do eiusmod tempor
+                  incididunt ut labore et dolore magna aliqua.
+                </div>
+              </div>
+              <footer class="d-flex justify-content-center pt-4">
+                <div class="d-flex align-items-center"><img class="rounded-circle" src="img/shop/reviews/01.jpg"
+                    width="50" alt="Rafael Marquez">
+                  <div class="ps-3">
+                    <h6 class="fs-sm mb-n1">Rafael Marquez</h6><span class="fs-ms text-muted opacity-75">Dec 19,
+                      2020</span>
+                  </div>
+                </div>
+              </footer>
+            </blockquote>
+            <blockquote class="mb-2">
+              <div class="card border-0 shadow-sm"><span class="testimonial-mark"></span>
+                <div class="card-body fs-md text-muted">
+                  <div class="mb-2">
+                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i>
+                    </div>
+                  </div>Lorem ipsum dolor sit amet, quia non consectetur adipiscing elit, sed do eiusmod tempor
+                  incididunt ut labore et dolore magna aliqua.
+                </div>
+              </div>
+              <footer class="d-flex justify-content-center pt-4">
+                <div class="d-flex align-items-center"><img class="rounded-circle" src="img/testimonials/02.jpg"
+                    width="50" alt="Adrian Lewis">
+                  <div class="ps-3">
+                    <h6 class="fs-sm mb-n1">Adrian Lewis</h6><span class="fs-ms text-muted opacity-75">Dec 13,
+                      2020</span>
+                  </div>
+                </div>
+              </footer>
+            </blockquote>
+            <blockquote class="mb-2">
+              <div class="card border-0 shadow-sm"><span class="testimonial-mark"></span>
+                <div class="card-body fs-md text-muted">
+                  <div class="mb-2">
+                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i
+                        class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i><i
+                        class="star-rating-icon ci-star"></i>
+                    </div>
+                  </div>Lorem ipsum dolor sit amet, quia non consectetur adipiscing elit, sed do eiusmod tempor
+                  incididunt ut labore et dolore magna aliqua.
+                </div>
+              </div>
+              <footer class="d-flex justify-content-center pt-4">
+                <div class="d-flex align-items-center"><img class="rounded-circle" src="img/shop/reviews/03.jpg"
+                    width="50" alt="Daniel Adams">
+                  <div class="ps-3">
+                    <h6 class="fs-sm mb-n1">Daniel Adams</h6><span class="fs-ms text-muted opacity-75">Dec 04,
+                      2020</span>
+                  </div>
+                </div>
+              </footer>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Mais vendidos -->
+    <section class="container position-relative" style="margin-top: -300px; z-index: 5;">
+      <div class="bg-light rounded-3 shadow-lg py-5 px-grid-gutter">
+        <h2 class="text-center pt-2 pt-md-4 mb-4 mb-md-5">Mais Vendidos</h2>
+        <div class="tns-carousel">
+          <div class="tns-carousel-inner"
+            data-carousel-options="{&quot;items&quot;: 2, &quot;controls&quot;: false, &quot;autoHeight&quot;: true, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2, &quot;gutter&quot;: 18},&quot;768&quot;:{&quot;items&quot;:3, &quot;gutter&quot;: 20}, &quot;1100&quot;:{&quot;items&quot;:4, &quot;gutter&quot;: 30}}}">
+            <!-- Produto 1 -->
+            <div>
+              <div class="card product-card card-static"><span class="badge badge-danger badge-shadow">Sale</span><a
+                  class="card-img-top d-block overflow-hidden" href="#"><img src="img/home/mono-product/gallery/02.png"
+                    alt="Product"></a>
+                <div class="card-body text-center py-2">
+                  <h3 class="product-title fs-sm"><a href="#">Honmel Natural com Limão</a></h3>
+                  <div class="product-price"><span class="text-accent">$19.<small>99</small></span>
+                    <del class="fs-sm text-muted">$29.<small>99</small></del>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Produto 2-->
+            <div>
+              <div class="card product-card card-static"><a class="card-img-top d-block overflow-hidden" href="#"><img
+                    src="img/home/mono-product/gallery/06.png" alt="Product"></a>
+                <div class="card-body text-center py-2">
+                  <h3 class="product-title fs-sm"><a href="#">Honmel Delux Premium</a></h3>
+                  <div class="product-price"><span class="text-accent">$129.<small>99</small></span></div>
+                </div>
+              </div>
+            </div>
+            <!-- Produto 3-->
+            <div>
+              <div class="card product-card card-static"><a class="card-img-top d-block overflow-hidden" href="#"><img
+                    src="img/home/mono-product/gallery/03.png" alt="Product"></a>
+                <div class="card-body text-center py-2">
+                  <h3 class="product-title fs-sm"><a href="#">Honmel Natural com Elcalipto</a></h3>
+                  <div class="product-price"><span class="text-accent">$25.<small>00</small></span></div>
+                </div>
+              </div>
+            </div>
+            <!-- Produto 4-->
+            <div>
+              <div class="card product-card card-static"><a class="card-img-top d-block overflow-hidden" href="#"><img
+                    src="img/home/mono-product/gallery/04.png" alt="Product"></a>
+                <div class="card-body text-center py-2">
+                  <h3 class="product-title fs-sm"><a href="#">Geleia Real Honmel</a></h3>
+                  <div class="product-price"><span class="text-accent">$214.<small>99</small></span></div>
+                </div>
+              </div>
+            </div>
+            <!-- Produto 5-->
+            <div>
+              <div class="card product-card card-static"><a class="card-img-top d-block overflow-hidden" href="#"><img
+                    src="img/home/mono-product/gallery/01.png" alt="Product"></a>
+                <div class="card-body text-center py-2">
+                  <h3 class="product-title fs-sm"><a href="#">Honmel Natural</a></h3>
+                  <div class="product-price"><span class="text-accent">$19.<small>99</small></span></div>
+                </div>
+              </div>
+            </div>
+            <!-- Produto 6-->
+            <div>
+              <div class="card product-card card-static"><a class="card-img-top d-block overflow-hidden" href="#"><img
+                    src="img/home/mono-product/gallery/05.png" alt="Product"></a>
+                <div class="card-body text-center py-2">
+                  <h3 class="product-title fs-sm"><a href="#">Honmel Natural com Romã</a></h3>
+                  <div class="product-price"><span class="text-accent">$21.<small>99</small></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Footer-->
+  <footer class="bg-darker" style="margin-top: -300px; padding-top: 300px;">
+    <div class="container mt-2 pt-5">
+      <div class="row pt-4 pb-3">
+        <div class="col-lg-2 col-sm-4 pb-2 mb-4">
+          <div class="mt-n1">
+            <a class="d-inline-block align-middle" href="#">
+              <img class="d-block mb-4" src="img/footer-logo-light.png" width="117" alt="Homel">
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-sm-4">
+          <div class="widget widget-links widget-light pb-2 mb-4">
+            <h3 class="widget-title text-light">Produtos</h3>
+            <ul class="widget-list">
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Honmel Natural</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Geleia Real Honmel</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Honmel Delux Premium</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Homel Sabores</a></li>
+
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-2 col-sm-4">
+          <div class="widget widget-links widget-light pb-2 mb-4">
+            <h3 class="widget-title text-light">Para o Você</h3>
+            <ul class="widget-list">
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Your Account</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Shipping Rates &amp; Policy</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Refunds &amp; Replacements</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Delivery Info</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-2 col-sm-4">
+          <div class="widget widget-links widget-light pb-2 mb-4">
+            <h3 class="widget-title text-light">Companhia</h3>
+            <ul class="widget-list">
+              <li class="widget-list-item"><a class="widget-list-link" href="#">About Us</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Contacts</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Careers</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Affiliates</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Support</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- Email-->
+        <div class="col-lg-4 col-sm-8">
+          <div class="widget pb-2 mb-4">
+            <h3 class="widget-title text-light pb-1">Mantenha-se Informado</h3>
+            <form class="subscription-form validate"
+              action=""
+              method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+              <div class="input-group flex-nowrap"><i
+                  class="ci-mail position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
+                <input class="form-control rounded-start" type="email" name="EMAIL" placeholder="Your email" required>
+                <button class="btn btn-primary" type="submit" name="subscribe">Inscreva-se</button>
+              </div>
+
+              <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                <input class="subscription-form-antispam" type="text" name="b_c7103e2c981361a6639545bd5_29ca296126"
+                  tabindex="-1">
+              </div>
+              <div class="form-text text-light opacity-50">*Espaço apenas para avaliação</div>
+              <div class="subscription-status"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <hr class="hr-light">
+      <div class="row align-items-center py-4">
+        <div class="col-sm-6 py-3">
+          <div class="fs-xs text-light opacity-50 text-center text-md-start">© All rights reserved. Made by <a
+              class="text-light" href="#" target="_blank" rel="noopener">VampDev</a>
+          </div>
+        </div>
+        <div class="col-sm-6 pt-3 pb-2 text-center text-sm-end"><a class="btn-social bs-light bs-twitter ms-2 mb-2"
+            href="#"><i class="ci-twitter"></i></a><a class="btn-social bs-light bs-facebook ms-2 mb-2" href="#"><i
+              class="ci-facebook"></i></a><a class="btn-social bs-light bs-instagram ms-2 mb-2" href="#"><i
+              class="ci-instagram"></i></a><a class="btn-social bs-light bs-pinterest ms-2 mb-2" href="#"><i
+              class="ci-pinterest"></i></a><a class="btn-social bs-light bs-youtube ms-2 mb-2" href="#"><i
+              class="ci-youtube"></i></a></div>
+      </div>
+    </div>
+  </footer>
+  <!-- Back To Top Button-->
+  <a class="btn-scroll-top" href="#top" data-scroll><span
+      class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up">
+    </i></a>
+  <!-- scrits: js libraries e plugins-->
+  <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/simplebar/dist/simplebar.min.js"></script>
+  <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
+  <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+  <script src="vendor/lightgallery/lightgallery.min.js"></script>
+  <script src="vendor/lightgallery/plugins/fullscreen/lg-fullscreen.min.js"></script>
+  <script src="vendor/lightgallery/plugins/zoom/lg-zoom.min.js"></script>
+  <script src="js/carrinho.js"></script>
+
+  <!-- Main theme script-->
+  <script src="js/theme.min.js"></script>
+
+</body>
+
+<!-- Firebase conction-->
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyA3Xdxmqz27VaJa8XHQ7lKrf5qjF1ficsA",
+    authDomain: "projetohonmel.firebaseapp.com",
+    projectId: "projetohonmel",
+    storageBucket: "projetohonmel.appspot.com",
+    messagingSenderId: "258344388224",
+    appId: "1:258344388224:web:a3ed6977deb4a454110865"
+  };
+    firebase.initializeApp(firebaseConfig)
+ 
+  console.log('antes');
+  firebase.auth().signInWithEmailAndPassword("escanor.pec.leao@gmail.com", "live2011").then(response =>{
+    console.log('success', response)
+  }).catch(error=>{
+    console.log('error', error)
+  });
+  console.log('depois')
+  
+</script>
+
+</html>
